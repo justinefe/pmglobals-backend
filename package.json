@@ -1,0 +1,48 @@
+{
+  "name": "pm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node dist/server",
+    "migrate_test": "cross-env NODE_ENV=test sequelize db:migrate",
+    "migrate_test:undo": "cross-env NODE_ENV=test sequelize db:migrate:undo:all",
+    "pretest": "npm run migrate_test:undo && npm run migrate_test",
+    "test": "jest --detectOpenHandles --verbose --coverage --forceExit",
+    "dev": "nodemon --exec babel-node server/server.js",
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo:all",
+    "seed": "sequelize db:seed:all",
+    "seed:undo": "sequelize db:seed:undo",
+    "build": "babel server --copy-files --out-dir dist",
+    "heroku-postbuild": "cross-env NODE_ENV=production sequelize db:migrate",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "author": "Efe Justin Igugu",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5"
+  }
+}
