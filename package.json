@@ -14,8 +14,7 @@
     "migrate:undo": "sequelize db:migrate:undo:all",
     "seed": "sequelize db:seed:all",
     "seed:undo": "sequelize db:seed:undo",
-    "build": "babel server --copy-files --out-dir dist",
-    "heroku-postbuild": "cross-env NODE_ENV=production sequelize db:migrate",
+    "build": "cross-env NODE_ENV=production sequelize db:migrate && babel server --copy-files --out-dir dist",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Efe Justin Igugu",
